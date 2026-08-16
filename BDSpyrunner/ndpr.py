@@ -1,6 +1,6 @@
 # coding=utf-8
 # =========================================================
-#  NDPR - NotDPR 封禁系统 - BDSpyrunner 客户端
+#  NDPR - NDPReforged 封禁系统 - BDSpyrunner 客户端
 #  API 兼容 BDSpyrunner / BDSpyrunnerW
 #  安装：将本文件放入 BDSpyrunner 的 plugins 目录即可
 # =========================================================
