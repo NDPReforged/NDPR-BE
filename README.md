@@ -15,7 +15,7 @@
 
 ## 📖 简介
 
-NDPR (NotDPR) 是一个强大的 Minecraft 服务器玩家封禁系统，通过云端封禁数据库实现跨服联防。
+NDPR（全称 NDPReforged）是一个强大的 Minecraft 服务器玩家封禁系统，通过云端封禁数据库实现跨服联防。
 本仓库提供 **基岩版（Bedrock Edition）** 六个主流服务端平台的客户端插件，同一版本的所有
 服务端客户端打包在同一个 [Release](https://github.com/NDPReforged/NDPR-BE/releases) 中。
 
