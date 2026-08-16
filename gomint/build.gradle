@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    // Gradle 8/9 通用；旧版 johnrengelman-shadow 不兼容 Gradle 9
+    id 'com.gradleup.shadow' version '9.6.1'
+}
+
+group = 'ndpr'
+version = '2.1.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+    // gomint 官方 Maven 仓库已停服；gomint-api 需先本地安装（README 方式 A：mvn install）
+    mavenLocal()
+    maven { url 'https://gomint.io/maven' }
+    // 方式 B 兜底：把 gomint 服务端 jar 放入 libs/ 并取消下行注释
+    // flatDir { dirs 'libs' }
+}
+
+dependencies {
+    compileOnly 'io.gomint:gomint-api:1.0.0-SNAPSHOT'
+    // gomint 服务端运行时自带 slf4j
+    compileOnly 'org.slf4j:slf4j-api:1.7.36'
+    // SQLite 驱动（打包进插件 jar）
+    implementation 'org.xerial:sqlite-jdbc:3.45.1.0'
+}
+
+// 共享 Java 核心（gomint / Allay / Nukkit 复用同一份源码）
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', '../java-core/src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources', '../java-core/src/main/resources']
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+shadowJar {
+    archiveFileName = 'ndpr-gomint-2.1.0.jar'
+    relocate 'org.sqlite', 'ndpr.shadow.sqlite'
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+}
+
+build.dependsOn shadowJar
