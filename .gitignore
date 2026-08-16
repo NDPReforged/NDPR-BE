@@ -1,0 +1,27 @@
+﻿# Gradle / Java
+build/
+.gradle/
+*.class
+out/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node / BDSX
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+Thumbs.db
+.DS_Store
+
+# 运行数据（插件运行时生成）
+config.json
+ndpr_data/
+*.db
+*.db.tmp
