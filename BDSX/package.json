@@ -1,0 +1,24 @@
+{
+    "name": "@ndpr/bdsx-ndpr",
+    "version": "2.1.0",
+    "description": "NDPReforged ban system client for BDSX",
+    "main": "index.js",
+    "keywords": ["minecraft", "bdsx", "bds", "ndpr", "ban"],
+    "author": "NDPReforged Team",
+    "license": "MIT",
+    "bdsxPlugin": true,
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "prepare": "tsc || exit 0"
+    },
+    "dependencies": {
+        "better-sqlite3": "^9.6.0"
+    },
+    "devDependencies": {
+        "bdsx": "file:../bdsx",
+        "@types/better-sqlite3": "^7.6.4",
+        "@types/node": "^18.0.0",
+        "typescript": "^5.0.0"
+    }
+}
