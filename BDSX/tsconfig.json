@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "lib": ["es2017"],
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "alwaysStrict": true,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "noImplicitThis": false,
+        "resolveJsonModule": true,
+        "inlineSourceMap": true,
+        "importHelpers": true,
+        "experimentalDecorators": true,
+        "declaration": false,
+        "skipLibCheck": true
+    }
+}
