@@ -1,0 +1,8 @@
+{
+    "name": "NDPR",
+    "entrance": "ndpr.allay.NDPRAllay",
+    "authors": ["NDPReforged Team"],
+    "version": "2.1.0",
+    "description": "NDPReforged 封禁系统客户端（跨服联防 / HWID 验证），NDPReforged 封禁系统基岩版客户端",
+    "website": "https://ndpreforged.com"
+}
