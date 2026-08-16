@@ -1,5 +1,5 @@
 /**
- * NDPR - NotDPR 封禁系统 - BDSX 客户端 (TypeScript)
+ * NDPR - NDPReforged 封禁系统 - BDSX 客户端 (TypeScript)
  *
  * 安装：
  *   1. 将本目录复制到 bdsx 的 plugins/ 下（如 plugins/ndpr/）
