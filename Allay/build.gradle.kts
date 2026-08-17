@@ -5,13 +5,13 @@ plugins {
 }
 
 group = "ndpr"
-description = "NDPReforged 封禁系统客户端（跨服联防 / HWID 验证），NDPReforged 封禁系统基岩版客户端"
+description = "NDPReforged 封禁系统基岩版客户端（跨服联防 / HWID 验证）"
 version = "2.1.0"
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    // 任意 JDK 21+ 均可构建（不使用强制 toolchain，避免本机只有更高版本 JDK 时失败）
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
@@ -35,6 +35,11 @@ sourceSets {
             srcDirs("src/main/resources", "../java-core/src/main/resources")
         }
     }
+}
+
+tasks.withType<ProcessResources>().configureEach {
+    // 多资源目录合并时去重（plugin.json 等）
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.withType(JavaCompile::class.java).configureEach {
