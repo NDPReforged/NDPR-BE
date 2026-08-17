@@ -366,7 +366,7 @@ std::optional<BanRow> NDPR::queryBan(std::string const& player, std::string cons
     for (auto const& table : {"online", "offline"}) {
         auto cols = tableSchema(db, table, mSchemaCache, mDbSchemaMutex);
         std::string timeCol = cols.count("ban_time") ? "ban_time" : (cols.count("last_seen") ? "last_seen"
-                                                                                            : std::string(table == "offline" ? "ban_time" : "last_seen"));
+                                                                                            : std::string(std::strcmp(table, "offline") == 0 ? "ban_time" : "last_seen"));
         bool hasMc = cols.count("mcuuid") > 0;
         std::string sql;
         if (hasMc) {
@@ -413,7 +413,7 @@ std::optional<BanRow> NDPR::lookupByPlayer(std::string const& player) {
     for (auto const& table : {"online", "offline"}) {
         auto cols = tableSchema(db, table, mSchemaCache, mDbSchemaMutex);
         std::string timeCol = cols.count("ban_time") ? "ban_time" : (cols.count("last_seen") ? "last_seen"
-                                                                                            : std::string(table == "offline" ? "ban_time" : "last_seen"));
+                                                                                            : std::string(std::strcmp(table, "offline") == 0 ? "ban_time" : "last_seen"));
         std::string sql = "SELECT ip, ban_reason, " + timeCol + " FROM " + table + " WHERE player = ?";
         sqlite3_stmt* stmt = nullptr;
         if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
@@ -448,7 +448,7 @@ std::optional<BanRow> NDPR::lookupByIdentifier(std::string const& type, std::str
     for (auto const& table : {"online", "offline"}) {
         auto cols = tableSchema(db, table, mSchemaCache, mDbSchemaMutex);
         std::string timeCol = cols.count("ban_time") ? "ban_time" : (cols.count("last_seen") ? "last_seen"
-                                                                                            : std::string(table == "offline" ? "ban_time" : "last_seen"));
+                                                                                            : std::string(std::strcmp(table, "offline") == 0 ? "ban_time" : "last_seen"));
         std::string col;
         if (type == "ip") col = "ip";
         else if (type == "ipv6") col = "ipv6";
@@ -700,7 +700,7 @@ void NDPR::executeCommand(std::string const& cmd) {
         if (!level) return;
         auto& serverLevel = static_cast<ServerLevel&>(*level);
         ServerCommandOrigin origin("ndpr", serverLevel, CommandPermissionLevel::Host, DimensionType(0));
-        ll::command::CommandRegistrar::getInstance().executeCommand(cmd, origin);
+        ll::command::CommandRegistrar::getInstance(false).executeCommand(cmd, origin);
     });
 }
 
