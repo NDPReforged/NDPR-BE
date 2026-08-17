@@ -55,7 +55,7 @@ bool NDPRMod::enable() {
         });
 
     // ---- 命令 /ndpr ----
-    auto& registrar = ll::command::CommandRegistrar::getInstance();
+    auto& registrar = ll::command::CommandRegistrar::getInstance(false);
     auto& cmd = registrar.getOrCreateCommand("ndpr", "NDPR主命令", CommandPermissionLevel::Any);
     cmd.overload<NDPRArgs>()
         .optional("sub")
