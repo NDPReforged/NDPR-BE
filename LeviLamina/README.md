@@ -18,13 +18,14 @@ NDPReforged 封禁系统的 LeviLamina（基岩版 BDS 插件加载器）原生 
 ```bash
 # 1. 安装 xmake、VS2022（含 C++ 桌面开发）、git
 # 2. 克隆 LeviLamina 并安装 lip 依赖（参考官方文档安装 LeviLamina 本体）
-# 3. 在本目录构建
-xmake f -m release
-xmake
+# 3. 在本目录构建（与社区插件惯例一致）
+xmake f -y -p windows -a x64 -m release
+xmake build ndpr
 ```
 
 构建产物在 `bin/ndpr/`（含 `ndpr.dll` 与 `manifest.json`），整体复制到 LeviLamina 的
-`plugins/` 目录后启动 `bedrock_server_mod.exe`。
+`plugins/` 目录后启动 `bedrock_server_mod.exe`（发布布局与 Phantom 等社区插件一致：
+`plugins/ndpr/{ndpr.dll, manifest.json}`）。
 
 > 依赖：xmake 会自动拉取 `levilamina`（liteldev-repo）与 `levibuildscript` 包；
 > 网络不佳时可先 `xmake f --pkg_searchdirs=...` 离线放置包缓存。
