@@ -4,7 +4,7 @@ version: "2.1.0"
 api: ["1.0.0"]
 author: NDPReforged Team
 website: https://ndpreforged.com
-description: NDPReforged 封禁系统客户端（跨服联防 / HWID 验证），NDPReforged 封禁系统基岩版客户端
+description: NDPReforged 封禁系统基岩版客户端（跨服联防 / HWID 验证）
 permissions:
   ndpr.command:
     description: 允许使用 /ndpr 命令
