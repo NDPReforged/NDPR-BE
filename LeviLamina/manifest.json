@@ -3,7 +3,7 @@
     "entry": "ndpr.dll",
     "version": "2.1.0",
     "type": "native",
-    "platform": "win",
+    "platform": "server",
     "author": "NDPReforged Team",
     "description": "NDPReforged 封禁系统基岩版客户端（跨服联防 / HWID 验证）"
 }
