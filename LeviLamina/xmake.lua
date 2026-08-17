@@ -21,7 +21,7 @@ end
 
 target("ndpr")
     add_rules("@levibuildscript/linkrule")
-    add_rules("@levibuildscript/modpacker")
+    add_rules("@levibuildscript/modpacker", {modVersion = "2.1.0"})
     if is_plat("windows") then
         add_defines("NOMINMAX", "UNICODE")
         set_exceptions("none") -- To avoid conflicts with /EHa.
@@ -39,7 +39,9 @@ target("ndpr")
             "-Wno-pragma-system-header-outside-header",
             {tools = {"clang_cl"}}
         )
-        set_toolchains("clang-cl")
+        -- 工具链：默认自动检测（VS2022 → MSVC）；如需 clang-cl 可执行
+        --   xmake f -c --toolchain=clang-cl
+        -- 重新配置后构建。clang 专用参数（上方 {tools={"clang_cl"}} 组）仅 clang-cl 生效。
     end
     add_packages("levilamina")
     set_kind("shared")
